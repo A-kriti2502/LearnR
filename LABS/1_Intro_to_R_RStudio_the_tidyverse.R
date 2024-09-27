@@ -82,6 +82,14 @@ standard_deviation <- function(x){
   return(s) # output of the function
 }
 
+sample_varience <- function(x){
+  xbar <- mean(x)
+  N <- length(x)
+  s <- (sum( (x-xbar)^2 )/(N-1))
+  return(s)
+}
+sample_varience(Nile)
+
 standard_deviation(Nile)
 sd(Nile)
 standard_deviation(c("cat", "dog"))

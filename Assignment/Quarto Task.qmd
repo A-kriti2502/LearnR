@@ -1,0 +1,82 @@
+---
+title: "Quarto Task"
+author: "Aakriti Abhay Singh 24215296 "
+format: pdf
+editor: visual
+---
+
+# Load the MASS package
+
+the MASS package is commonly used in statistics and data science because of its wide range of methods for applied statistics.
+
+```{r}
+library(MASS)
+```
+
+# The Rabbit dataset
+
+Five rabbits were studied on two occasions, after treatment with saline (control) and after treatment with the 5−HT$_3$ antagonist MDL 72222. After each treatment ascending doses of phenylbiguanide were injected intravenously at 10 minute intervals and the responses of mean blood pressure measured. The goal was to test whether the cardiogenic chemoreflex elicited by phenylbiguanide depends on the activation of 5−H$T_3$ receptors.
+
+```{r}
+data(Rabbit)
+head(Rabbit , 6)
+```
+
+The **rabbit** dataset from the **MASS** package contains data from an experiment studying blood pressure changes in rabbits after being treated with a placebo and the 5-HT$_3$ antagonist MDL 72222. The data has 60 rows with the following variables:
+
+| **Column**    | **Description**                                                         |
+|---------------|-------------------------------------------------------------------------|
+| **BPchange**  | Change in blood pressure relative to the start of the experiment.       |
+| **Dose**      | Dose of phenylbiguanide in micrograms.                                  |
+| **Run**       | Label of run ("C1" to "C5" for control and "M1" to "M5" for MDL 72222). |
+| **Treatment** | Placebo or the 5-HT$_3$ antagonist MDL 72222.                           |
+| **Animal**    | Label of the rabbit used ("R1" to "R5").                                |
+
+# Plot
+
+### boxplot
+
+A boxplot can be useful for comparing the distribution of BPchange between the different Treatment groups (placebo vs. 5-HT$_3$ antagonist). This can help to visualize any significant differences in blood pressure changes based on treatment.
+
+```{r}
+boxplot(BPchange ~ Treatment, data = Rabbit,
+        xlab = "Treatment",
+        ylab = "Change in Blood Pressure (mmHg)",
+        main = "BPchange by Treatment",
+        col = c("lightblue", "lightpink"))
+```
+
+### Interpretation of the box plot
+
+1.  **Minimum values** :
+
+    -   both of the control and MDL treatment had a minimum value of 0.
+
+    -   indicating that no negative change in the blood pressure for either of the treatment
+
+2.  **Maximum values** :
+
+    -   the control group has a maximum value exceeding 30mmHg
+    -   the MDL group has a maximum value lower than the control and contains one outlier at this maximum point.
+
+3.  **Quartile** :
+
+    -   Q1 (First Quartile) : Both groups have a Q1 of 1 mmHg indicates similar lower responses to lower doses of treatment.
+    -   Q2 (Median) : control group's median is 10 mmHg. MDL group's median is closer to 0 mmHg suggests the control treatment led to a higher average increase in blood pressure.
+    -   Q3 (Third Quartile) : control group's Q3 is at 25 mmHg MDL group's Q3 is at 15 mmHg indicates that the upper 25% of the control group had significantly higher blood pressure responses.
+
+4.  **Spread and variability** :
+
+    -   control group shows a *wider range* from Q1 to Q3 , indicating *greater variability* in response.
+    -   MDL group has a *narrower range*, suggesting more consistent but lower responses.
+
+5.  **Outlier** :
+
+    -   An outlier is present in the MDL group at the maximum point of the control.
+    -   This suggests an unusual response from one rabbit, warranting further investigation.
+
+### Conclusion
+
+1.  The control treatment is more effective in raising blood pressure compared to the 5-HT3 antagonist (MDL), as indicated by higher medians and greater variability.
+
+2.  The MDL group shows generally lower blood pressure responses but includes an outlier that may need further exploration.
